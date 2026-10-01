@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Arena | Admin Dashboard</title><link rel="stylesheet" href="styles.css">
+</head>
+<body class="dashboard-page">
+<nav class="navbar"><div class="nav-logo">GAME <span>ARENA</span></div><div class="nav-links"><a href="index.html">Home</a><a href="games.html">Games</a><a href="matches.html">Matches</a><a href="teams.html">Teams</a><a href="leaderboard.html">Leaderboard</a><a href="dashboard.html">Dashboard</a></div></nav>
+<main class="admin-page container">
+<section class="page-hero compact-hero"><p class="eyebrow">CONTROL CENTER</p><h1>ADMIN <span>DASHBOARD</span></h1><p>Manage users, teams, registrations and live matches from one place.</p></section>
+<section class="admin-stats"><div class="admin-stat"><span>👤</span><strong id="adminUsers">0</strong><small>USERS</small></div><div class="admin-stat"><span>🛡️</span><strong id="adminTeams">0</strong><small>TEAMS</small></div><div class="admin-stat"><span>🏆</span><strong id="adminRegistrations">0</strong><small>REGISTRATIONS</small></div><div class="admin-stat"><span>🎮</span><strong id="adminMatches">0</strong><small>MATCHES</small></div></section>
+<section class="admin-grid">
+<div class="admin-panel"><div class="admin-panel-head"><div><p class="eyebrow">RECENT ACTIVITY</p><h2>Registrations</h2></div><span id="registrationBadge" class="admin-badge">0</span></div><div id="adminRegistrationsList" class="admin-list"></div></div>
+<div class="admin-panel"><div class="admin-panel-head"><div><p class="eyebrow">COMMUNITY</p><h2>Teams</h2></div><span id="teamBadge" class="admin-badge">0</span></div><div id="adminTeamsList" class="admin-list"></div></div>
+</section>
+<section class="admin-panel"><div class="admin-panel-head"><div><p class="eyebrow">MATCH CONTROL</p><h2>Manage Matches</h2></div><button class="btn outline-btn" onclick="refreshAdmin()">↻ REFRESH</button></div><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Match</th><th>Game</th><th>Status</th><th>Result</th><th>Action</th></tr></thead><tbody id="adminMatchesList"></tbody></table></div></section>
+<section class="admin-panel announcement-admin-panel"><div class="admin-panel-head"><div><p class="eyebrow">COMMUNITY ALERTS</p><h2>Create Announcement</h2></div><span class="admin-badge">📢</span></div><div class="announcement-form"><input id="announcementTitle" class="admin-input" placeholder="Announcement title"><textarea id="announcementMessage" class="admin-input" rows="4" placeholder="Write an announcement for all players..."></textarea><div class="announcement-form-row"><select id="announcementType" class="admin-select"><option value="announcement">📢 Announcement</option><option value="tournament">🏆 Tournament</option><option value="match">⚔️ Match Alert</option><option value="result">🥇 Result</option></select><button class="btn primary-btn" onclick="createAnnouncement()">PUBLISH ANNOUNCEMENT</button></div><p id="announcementMessageStatus" class="form-message"></p></div><div class="admin-panel-head announcement-history-head"><div><p class="eyebrow">RECENT</p><h2>Published Announcements</h2></div></div><div id="adminAnnouncementsList" class="admin-list"></div></section>
+
+<section class="admin-panel tournament-admin-panel">
+<div class="admin-panel-head"><div><p class="eyebrow">EVENT MANAGEMENT</p><h2>🏆 Create Tournament</h2></div><span class="admin-badge">NEW</span></div>
+<div class="announcement-form">
+<div class="admin-form-grid">
+<div><label class="admin-label" for="tournamentTitle">Tournament Name</label><input id="tournamentTitle" class="admin-input" placeholder="e.g. Game Arena Clash" maxlength="80"></div>
+<div><label class="admin-label" for="tournamentGame">Game</label><select id="tournamentGame" class="admin-select"><option>Free Fire</option><option>BGMI</option><option>Valorant</option><option>Call of Duty Mobile</option><option>Minecraft</option><option>GTA</option><option>Avatar</option><option>ARK: Survival Evolved</option></select></div>
+<div><label class="admin-label" for="tournamentMode">Mode</label><input id="tournamentMode" class="admin-input" placeholder="Squad · Full Map · 6 Matches" maxlength="100"></div>
+<div><label class="admin-label" for="tournamentPrize">Prize Pool</label><input id="tournamentPrize" class="admin-input" placeholder="₹10,000" maxlength="30"></div>
+<div><label class="admin-label" for="tournamentEntry">Entry Fee</label><input id="tournamentEntry" class="admin-input" placeholder="₹100 / FREE" maxlength="30"></div>
+<div><label class="admin-label" for="tournamentTeams">Team Slots</label><input id="tournamentTeams" class="admin-input" placeholder="0 / 32" maxlength="30"></div>
+<div><label class="admin-label" for="tournamentDate">Tournament Date</label><input id="tournamentDate" class="admin-input" placeholder="September 30" maxlength="40"></div>
+</div>
+<button type="button" class="btn primary-btn" onclick="createTournament()">🏆 CREATE TOURNAMENT</button>
+<p id="tournamentMessageStatus" class="form-message"></p>
+</div>
+<div class="admin-panel-head announcement-history-head"><div><p class="eyebrow">MANAGE</p><h2>Created Tournaments</h2></div></div>
+<div id="adminTournamentsList" class="admin-list"></div>
+</section>
+
+<section class="admin-panel bracket-admin-panel">
+<div class="admin-panel-head"><div><p class="eyebrow">COMPETITION FLOW</p><h2>⚔️ Generate Tournament Bracket</h2></div><span class="admin-badge">STEP 13</span></div>
+<div class="participant-toolbar"><select id="bracketAdminTournament" class="admin-select"><option value="">Select a tournament</option></select><button class="btn primary-btn" type="button" onclick="generateTournamentBracket()">⚔️ GENERATE ROUND 1</button></div>
+<p id="bracketMessageStatus" class="form-message"></p>
+<div id="adminBracketPreview" class="admin-list"><div class="admin-empty">Select a tournament to preview its generated matches.</div></div>
+</section>
+
+<section class="admin-panel participant-admin-panel">
+<div class="admin-panel-head"><div><p class="eyebrow">PARTICIPANTS</p><h2>👥 Tournament Participants</h2></div><span id="participantBadge" class="admin-badge">0</span></div>
+<div class="participant-toolbar"><select id="participantTournamentSelect" class="admin-select" onchange="renderTournamentParticipants()"><option value="">Select a tournament</option></select></div>
+<div id="tournamentParticipantsList" class="admin-list"><div class="admin-empty">Select a tournament to view participants.</div></div>
+</section>
+
+<section class="admin-panel"><div class="admin-panel-head"><div><p class="eyebrow">ACCOUNTS</p><h2>Registered Users</h2></div></div><div id="adminUsersList" class="admin-users-grid"></div></section>
+
+<section class="panel" id="liveScoreControl">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">STEP 14</span>
+      <h2>🔴 Live Match & Score Control</h2>
+      <p class="muted">Update live scores, complete matches, and automatically update the leaderboard.</p>
+    </div>
+    <button class="btn secondary" onclick="renderAdminMatches()">↻ Refresh Scores</button>
+  </div>
+
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Match</th>
+          <th>Tournament</th>
+          <th>Status</th>
+          <th>Score</th>
+          <th>Result</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="adminMatchesBody"></tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+<footer class="footer"><p>© 2026 Game Arena · Admin Control Center</p></footer>
+<script src="app.js"></script>
+<script>
+function adminData(key,fallback=[]){try{return JSON.parse(localStorage.getItem(key)||JSON.stringify(fallback))}catch(e){return fallback}}
+function refreshAdmin(){
+ const users=adminData('gameArenaUsers'),teams=adminData('gameArenaTeams'),regs=adminData('gameArenaRegistrations'),matches=adminData('gameArenaMatches');
+ document.getElementById('adminUsers').textContent=users.length;document.getElementById('adminTeams').textContent=teams.length;document.getElementById('adminRegistrations').textContent=regs.length;document.getElementById('adminMatches').textContent=matches.length;
+ document.getElementById('registrationBadge').textContent=regs.length;document.getElementById('teamBadge').textContent=teams.length;
+ document.getElementById('adminRegistrationsList').innerHTML=regs.length?regs.slice().reverse().map(r=>`<div class="admin-list-item"><div><strong>${escapeHtml(r.tournament||r.tournamentName||'Tournament')}</strong><small>${escapeHtml(r.email||r.userEmail||r.userName||'Player')}</small></div><span>${escapeHtml(r.game||'—')}</span></div>`).join(''):'<div class="admin-empty">No registrations yet.</div>';
+ document.getElementById('adminTeamsList').innerHTML=teams.length?teams.slice().reverse().map(t=>`<div class="admin-list-item"><div><strong>${escapeHtml(t.teamName)}</strong><small>Captain: ${escapeHtml(t.captain||t.captainEmail||'—')}</small></div><span>${escapeHtml(t.game||'—')}</span></div>`).join(''):'<div class="admin-empty">No teams created yet.</div>';
+ document.getElementById('adminUsersList').innerHTML=users.length?users.map(u=>`<div class="admin-user"><div class="admin-avatar">${escapeHtml((u.name||'U').charAt(0).toUpperCase())}</div><div><strong>${escapeHtml(u.name||'User')}</strong><small>${escapeHtml(u.email||'')}</small></div></div>`).join(''):'<div class="admin-empty">No users registered yet.</div>';
+ document.getElementById('adminMatchesList').innerHTML=matches.length?matches.map(m=>`<tr><td><strong>${escapeHtml(m.teamA||'Team A')} vs ${escapeHtml(m.teamB||'Team B')}</strong><small>${escapeHtml(m.tournament||'')}</small></td><td>${escapeHtml(m.game||'')}</td><td><select class="admin-select" onchange="updateMatch('${m.id}',this.value)"><option value="live" ${m.status==='live'?'selected':''}>LIVE</option><option value="upcoming" ${m.status==='upcoming'?'selected':''}>UPCOMING</option><option value="completed" ${m.status==='completed'?'selected':''}>COMPLETED</option></select></td><td>${escapeHtml(m.result||'Upcoming')}</td><td><button class="admin-action" onclick="completeMatch('${m.id}')">SET RESULT</button></td></tr>`).join(''):'<tr><td colspan="5" class="admin-empty">No matches available.</td></tr>';
+}
+function updateMatch(id,status){const matches=adminData('gameArenaMatches');const m=matches.find(x=>x.id===id);if(!m)return;const oldStatus=m.status;m.status=status;if(status==='upcoming')m.result='Upcoming';if(status==='live')m.result='LIVE NOW';localStorage.setItem('gameArenaMatches',JSON.stringify(matches));if(typeof notifyMatchChange==='function')notifyMatchChange(m,oldStatus);refreshAdmin()}
+function completeMatch(id){const matches=adminData('gameArenaMatches');const m=matches.find(x=>x.id===id);if(!m)return;const oldStatus=m.status;const winner=prompt(`Enter winning team for ${m.teamA} vs ${m.teamB}:`,m.teamA);if(!winner)return;m.status='completed';m.result=`${winner} WON`;localStorage.setItem('gameArenaMatches',JSON.stringify(matches));if(typeof notifyMatchChange==='function')notifyMatchChange(m,oldStatus);refreshAdmin()}
+
+function tournamentData(){return adminData('gameArenaCustomTournaments')}
+function createTournament(){
+ const title=document.getElementById('tournamentTitle')?.value.trim(),game=document.getElementById('tournamentGame')?.value||'Free Fire',mode=document.getElementById('tournamentMode')?.value.trim(),prize=document.getElementById('tournamentPrize')?.value.trim(),entry=document.getElementById('tournamentEntry')?.value.trim()||'FREE',teams=document.getElementById('tournamentTeams')?.value.trim()||'0 / 32',date=document.getElementById('tournamentDate')?.value.trim(),status=document.getElementById('tournamentMessageStatus');
+ if(!title||!mode||!prize||!date){if(status)status.textContent='❌ Fill tournament name, mode, prize and date.';return;}
+ const tournaments=tournamentData();
+ if(tournaments.some(t=>t.title.toLowerCase()===title.toLowerCase())){if(status)status.textContent='❌ A tournament with this name already exists.';return;}
+ const tournament={id:'t'+Date.now(),title,game,mode,prize,entry,teams,date,status:'OPEN',createdAt:new Date().toLocaleString()};
+ tournaments.unshift(tournament);localStorage.setItem('gameArenaCustomTournaments',JSON.stringify(tournaments));
+ if(typeof addNotification==='function')addNotification('tournament',`New Tournament: ${title}`,`${game} tournament is now open for registration.`,null);
+ ['tournamentTitle','tournamentMode','tournamentPrize','tournamentEntry','tournamentTeams','tournamentDate'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+ if(status)status.textContent='✅ Tournament created successfully and added to Games.';renderAdminTournaments();
+}
+function renderAdminTournaments(){const box=document.getElementById('adminTournamentsList');if(!box)return;const tournaments=tournamentData();box.innerHTML=tournaments.length?tournaments.map(t=>`<div class="admin-list-item"><div><strong>🏆 ${escapeHtml(t.title)}</strong><small>${escapeHtml(t.game)} · ${escapeHtml(t.mode)} · ${escapeHtml(t.date)}</small></div><button class="admin-action" onclick="deleteTournament('${t.id}')">DELETE</button></div>`).join(''):'<div class="admin-empty">No custom tournaments created yet.</div>';}
+function deleteTournament(id){const tournaments=tournamentData(),t=tournaments.find(x=>x.id===id);if(!t)return;if(!confirm(`Delete ${t.title}?`))return;localStorage.setItem('gameArenaCustomTournaments',JSON.stringify(tournaments.filter(x=>x.id!==id)));renderAdminTournaments();}
+function refreshParticipantTournamentOptions(){
+ const select=document.getElementById('participantTournamentSelect');
+ if(!select)return;
+ const tournaments=tournamentData();
+ const current=select.value;
+ select.innerHTML='<option value="">Select a tournament</option>'+tournaments.map(t=>`<option value="${escapeHtml(t.id)}">${escapeHtml(t.title)}</option>`).join('');
+ if(tournaments.some(t=>t.id===current))select.value=current;
+ renderTournamentParticipants();
+}
+function renderTournamentParticipants(){
+ const select=document.getElementById('participantTournamentSelect');
+ const box=document.getElementById('tournamentParticipantsList');
+ const badge=document.getElementById('participantBadge');
+ if(!select||!box)return;
+ const tournament=tournamentData().find(t=>t.id===select.value);
+ if(!tournament){box.innerHTML='<div class="admin-empty">Select a tournament to view participants.</div>';if(badge)badge.textContent='0';return;}
+ const registrations=adminData('gameArenaRegistrations').filter(r=>r.tournament===tournament.title);
+ if(badge)badge.textContent=registrations.length;
+ box.innerHTML=registrations.length?registrations.map(r=>`<div class="admin-list-item"><div><strong>👤 ${escapeHtml(r.playerName||r.userName||'Player')}</strong><small>${escapeHtml(r.email||'')} · Registered: ${escapeHtml(r.registeredAt||'')}</small></div><button class="admin-action" onclick="removeTournamentParticipant('${r.id}')">REMOVE</button></div>`).join(''):'<div class="admin-empty">No participants registered yet.</div>';
+}
+function removeTournamentParticipant(id){
+ const registrations=adminData('gameArenaRegistrations');
+ const item=registrations.find(r=>r.id===id);
+ if(!item)return;
+ if(!confirm(`Remove ${item.playerName||item.email||'this participant'} from ${item.tournament}?`))return;
+ localStorage.setItem('gameArenaRegistrations',JSON.stringify(registrations.filter(r=>r.id!==id)));
+ if(getCustomTournaments().some(t=>t.title===item.tournament))updateCustomTournamentSlots(item.tournament);
+ refreshAdmin();
+ refreshParticipantTournamentOptions();
+}
+refreshAdmin();
+renderAdminAnnouncements();
+populateAdminBracketTournaments();
+renderAdminBracketPreview();
+renderAdminTournaments();
+refreshParticipantTournamentOptions();
+</script>
+</body></html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile | Game Arena</title><link rel="stylesheet" href="styles.css">
+</head>
+<body class="profile-page">
+<nav class="navbar">
+<div class="logo"><a class="nav-logo-link" href="index.html">GAME <span>ARENA</span></a></div>
+<div class="nav-links" id="navLinks"><a href="index.html">Home</a><a href="games.html">Games</a><a href="matches.html">Matches</a><a href="teams.html">Teams</a><a href="leaderboard.html">Leaderboard</a><a href="about.html">About</a></div>
+<div class="nav-buttons"><a class="btn login-btn" href="dashboard.html">Dashboard</a></div><button class="menu-btn" id="menuBtn">☰</button>
+<a class="notification-bell nav-notify" href="notifications.html" aria-label="Notifications">🔔<span id="notificationCount">0</span></a></nav>
+<main class="page-shell profile-shell">
+<section class="profile-hero">
+<div><div class="page-kicker">PLAYER PROFILE</div><h1 class="page-title">MY <span style="color:var(--purple2)">PROFILE.</span></h1><p class="page-subtitle">Customize your gamer identity, track your stats, and manage your account.</p></div>
+<div class="profile-avatar-large" id="profileAvatarPreview">🎮</div>
+</section>
+<section class="profile-layout">
+<article class="dashboard-card profile-main-card">
+<div class="dashboard-section-heading"><div><div class="section-kicker">GAMER IDENTITY</div><h2>Profile Information</h2></div><span class="online-badge">● ACTIVE</span></div>
+<form id="profileForm" class="profile-form">
+<div class="profile-avatar-picker"><div class="profile-avatar-small" id="profileAvatarSmall">🎮</div><div><strong>Choose your avatar</strong><div class="avatar-options" id="avatarOptions"></div></div></div>
+<div class="profile-form-grid">
+<div class="form-group"><label for="profileName">DISPLAY NAME</label><input id="profileName" required maxlength="30"></div>
+<div class="form-group"><label for="profileEmail">EMAIL</label><input id="profileEmail" type="email" readonly></div>
+<div class="form-group"><label for="profileGame">MAIN GAME</label><select id="profileGame"><option>Free Fire</option><option>BGMI</option><option>Valorant</option><option>Call of Duty Mobile</option><option>Minecraft</option><option>GTA</option><option>Avatar</option><option>ARK</option></select></div>
+<div class="form-group"><label for="profileTag">GAMER TAG</label><input id="profileTag" maxlength="20" placeholder="e.g. DheerajOP"></div>
+</div>
+<div class="form-group"><label for="profileBio">BIO</label><textarea id="profileBio" rows="4" maxlength="160" placeholder="Tell the arena who you are..."></textarea></div>
+<button class="btn primary-btn" type="submit">SAVE PROFILE →</button><div class="auth-message" id="profileMessage"></div>
+</form>
+</article>
+<aside class="profile-side">
+<article class="dashboard-card profile-stats-card"><div class="section-kicker">YOUR RECORD</div><h2>Career Stats</h2><div class="career-stats"><div><strong id="profileWins">0</strong><span>WINS</span></div><div><strong id="profileMatches">0</strong><span>MATCHES</span></div><div><strong id="profileTournaments">0</strong><span>TOURNAMENTS</span></div><div><strong id="profileTeams">0</strong><span>TEAMS</span></div></div></article>
+<article class="dashboard-card password-card"><div class="section-kicker">ACCOUNT SECURITY</div><h2>Change Password</h2><form id="passwordForm"><div class="form-group"><label for="currentPassword">CURRENT PASSWORD</label><input id="currentPassword" type="password" required></div><div class="form-group"><label for="newPassword">NEW PASSWORD</label><input id="newPassword" type="password" minlength="4" required></div><div class="form-group"><label for="confirmPassword">CONFIRM PASSWORD</label><input id="confirmPassword" type="password" minlength="4" required></div><button class="btn outline-btn full" type="submit">UPDATE PASSWORD</button><div class="auth-message" id="passwordMessage"></div></form></article>
+</aside>
+</section>
+<section class="dashboard-card achievements-card"><div class="dashboard-section-heading"><div><div class="section-kicker">MILESTONES</div><h2>Achievements</h2></div></div><div class="achievement-grid" id="achievementGrid"></div></section>
+</main>
+<footer class="footer-simple">© 2026 Game Arena · Built for competitive gamers.</footer>
+<script src="app.js"></script>
+</body></html>

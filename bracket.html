@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Arena | Tournament Bracket</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="dashboard-page">
+<nav class="navbar">
+  <div class="nav-logo">GAME <span>ARENA</span></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a><a href="games.html">Games</a><a href="matches.html">Matches</a><a href="bracket.html" class="active">Bracket</a><a href="teams.html">Teams</a><a href="leaderboard.html">Leaderboard</a><a href="dashboard.html">Dashboard</a>
+  </div>
+</nav>
+<main class="container bracket-page">
+<section class="page-hero compact-hero"><p class="eyebrow">COMPETITION FLOW</p><h1>TOURNAMENT <span>BRACKET</span></h1><p>Follow first-round matchups generated from registered participants.</p></section>
+<section class="bracket-toolbar admin-panel">
+  <div><p class="eyebrow">SELECT EVENT</p><h2>Live Bracket</h2></div>
+  <select id="bracketTournamentSelect" class="admin-select" onchange="renderBracket()"><option value="">Select a tournament</option></select>
+</section>
+<section id="bracketSummary" class="bracket-summary"></section>
+<section id="bracketList" class="bracket-rounds"><div class="admin-empty">Select a tournament to view its bracket.</div></section>
+</main>
+<footer class="footer"><p>© 2026 Game Arena · Tournament Bracket</p></footer>
+<script src="app.js"></script>
+<script>populateBracketTournaments(); renderBracket();</script>
+</body>
+</html>

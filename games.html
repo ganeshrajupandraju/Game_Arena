@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games & Tournaments | Game Arena</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <a class="nav-logo-link" href="index.html">GAME <span>ARENA</span></a>
+    </div>
+
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="games.html" class="active">Games</a>
+        <a href="matches.html">Matches</a>
+        <a href="teams.html">Teams</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="about.html">About</a>
+    </div>
+
+    <div class="nav-buttons">
+        <button class="btn login-btn" onclick="location.href='auth.html?mode=login'">Login</button>
+        <button class="btn primary-btn" onclick="location.href='auth.html?mode=register'">Register</button>
+    </div>
+
+    <button class="menu-btn" id="menuBtn">☰</button>
+<a class="notification-bell nav-notify" href="notifications.html" aria-label="Notifications">🔔<span id="notificationCount">0</span></a></nav>
+
+<main class="page-shell">
+    <section class="page-hero">
+        <div class="page-kicker">CHOOSE YOUR BATTLE</div>
+        <h1 class="page-title">
+            GAMES &<br>
+            <span style="color:var(--purple2)">TOURNAMENTS.</span>
+        </h1>
+        <p class="page-subtitle">
+            Pick your game, explore the tournament details and enter the battle.
+            Login once and all your registrations will appear in your dashboard.
+        </p>
+    </section>
+
+    <section class="custom-tournament-section" id="customTournamentSection" style="display:none;">
+        <div class="section-kicker">COMMUNITY EVENTS</div>
+        <h2>NEW TOURNAMENTS</h2>
+        <p class="muted">Tournaments created by the Game Arena admin.</p>
+        <div id="customTournamentList" class="grid-4"></div>
+    </section>
+
+    <section class="game-filter-bar">
+        <div>
+            <strong>8 GAMES</strong>
+            <span> • Competitive tournaments</span>
+        </div>
+        <a class="btn outline-btn" href="dashboard.html">MY DASHBOARD →</a>
+    </section>
+
+    <section class="grid-4">
+
+        <article class="game-card">
+            <div class="game-art ff"><span>🔥 FREE FIRE</span><b>LIVE</b></div>
+            <div class="game-body">
+                <h3>Free Fire Championship</h3>
+                <p class="muted">Squad · Full Map · 6 Matches</p>
+                <div class="info-row"><span>Prize <strong>₹10,000</strong></span><span>Entry <strong>₹100</strong></span></div>
+                <div class="action-row">
+                    <button class="btn details-btn" onclick="showGameDetails('Free Fire Championship','Free Fire','₹10,000','₹100','32 / 48','September 15','Squad · Full Map · 6 Matches')">VIEW DETAILS</button>
+                    <button class="btn primary-btn" onclick="registerTournament('Free Fire Championship','Free Fire','₹10,000','₹100','32 / 48','September 15')">REGISTER</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="game-card">
+            <div class="game-art bgmi"><span>🎯 BGMI</span><b>OPEN</b></div>
+            <div class="game-body">
+                <h3>BGMI Pro League</h3>
+                <p class="muted">Squad · Erangel · 5 Matches</p>
+                <div class="info-row"><span>Prize <strong>₹25,000</strong></span><span>Entry <strong>₹200</strong></span></div>
+                <div class="action-row">
+                    <button class="btn details-btn" onclick="showGameDetails('BGMI Pro League','BGMI','₹25,000','₹200','24 / 32','September 18','Squad · Erangel · 5 Matches')">VIEW DETAILS</button>
+                    <button class="btn primary-btn" onclick="registerTournament('BGMI Pro League','BGMI','₹25,000','₹200','24 / 32','September 18')">REGISTER</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="game-card">
+            <div class="game-art val"><span>⚡ VALORANT</span><b>OPEN</b></div>
+            <div class="game-body">
+                <h3>Valorant Masters</h3>
+                <p class="muted">5v5 · Competitive · Knockout</p>
+                <div class="info-row"><span>Prize <strong>₹50,000</strong></span><span>Entry <strong>₹500</strong></span></div>
+                <div class="action-row">
+                    <button class="btn details-btn" onclick="showGameDetails('Valorant Masters','Valorant','₹50,000','₹500','16 / 32','September 20','5v5 · Competitive · Knockout')">VIEW DETAILS</button>
+                    <button class="btn primary-btn" onclick="registerTournament('Valorant Masters','Valorant','₹50,000','₹500','16 / 32','September 20')">REGISTER</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="game-card">
+            <div class="game-art cod"><span>💀 COD MOBILE</span><b>OPEN</b></div>
+            <div class="game-body">
+                <h3>COD Mobile Elite</h3>
+                <p class="muted">Squad · Battle Royale · 6 Matches</p>
+                <div class="info-row"><span>Prize <strong>₹15,000</strong></span><span>Entry <strong>₹150</strong></span></div>
+                <div class="action-row">
+                    <button class="btn details-btn" onclick="showGameDetails('COD Mobile Elite','Call of Duty Mobile','₹15,000','₹150','20 / 24','September 25','Squad · Battle Royale · 6 Matches')">VIEW DETAILS</button>
+                    <button class="btn primary-btn" onclick="registerTournament('COD Mobile Elite','Call of Duty Mobile','₹15,000','₹150','20 / 24','September 25')">REGISTER</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="game-card">
+            <div class="game-art minecraft"><span>⛏️ MINECRAFT</span><b>SOON</b></div>
+            <div class="game-body">
+                <h3>Minecraft Battle Cup</h3>
+                <p class="muted">Teams · Survival · PvP</p>
+                <div class="info-row"><span>Prize <strong>₹8,000</strong></span><span>Entry <strong>₹80</strong></span></div>
+                <div class="action-row">
+                    <button class="btn details-btn" onclick="showGameDetails('Minecraft Battle Cup','Minecraft','₹8,000','₹80','8 / 16','September 28','Teams · Survival · PvP')">VIEW DETAILS</button>
+                    <button class="btn primary-btn" onclick="registerTournament('Minecraft Battle Cup','Minecraft','₹8,000','₹80','8 / 16','September 28')">REGISTER</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="game-card">
+            <div class="game-art gta"><span>🚘 GTA</span><b>SOON</b></div>
+            <div class="game-body">
+                <h3>GTA Street Kings</h3>
+                <p class="muted">Racing · Challenges · Knockout</p>
+                <div class="info-row"><span>Prize <strong>₹12,000</strong></span><span>Entry <strong>₹120</strong></span></div>
+                <div class="action-row">
+                    <button class="btn details-btn" onclick="showGameDetails('GTA Street Kings','GTA','₹12,000','₹120','12 / 16','October 2','Racing · Challenges · Knockout')">VIEW DETAILS</button>
+                    <button class="btn primary-btn" onclick="registerTournament('GTA Street Kings','GTA','₹12,000','₹120','12 / 16','October 2')">REGISTER</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="game-card">
+            <div class="game-art avatar"><span>🌌 AVATAR</span><b>SOON</b></div>
+            <div class="game-body">
+                <h3>Avatar Frontier Clash</h3>
+                <p class="muted">Squad · Arena · Elimination</p>
+                <div class="info-row"><span>Prize <strong>₹10,000</strong></span><span>Entry <strong>₹100</strong></span></div>
+                <div class="action-row">
+                    <button class="btn details-btn" onclick="showGameDetails('Avatar Frontier Clash','Avatar','₹10,000','₹100','10 / 16','October 5','Squad · Arena · Elimination')">VIEW DETAILS</button>
+                    <button class="btn primary-btn" onclick="registerTournament('Avatar Frontier Clash','Avatar','₹10,000','₹100','10 / 16','October 5')">REGISTER</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="game-card">
+            <div class="game-art ark"><span>🦖 ARK</span><b>SOON</b></div>
+            <div class="game-body">
+                <h3>ARK Survival Wars</h3>
+                <p class="muted">Tribes · Survival · PvP</p>
+                <div class="info-row"><span>Prize <strong>₹9,000</strong></span><span>Entry <strong>₹90</strong></span></div>
+                <div class="action-row">
+                    <button class="btn details-btn" onclick="showGameDetails('ARK Survival Wars','ARK: Survival Evolved','₹9,000','₹90','6 / 12','October 8','Tribes · Survival · PvP')">VIEW DETAILS</button>
+                    <button class="btn primary-btn" onclick="registerTournament('ARK Survival Wars','ARK: Survival Evolved','₹9,000','₹90','6 / 12','October 8')">REGISTER</button>
+                </div>
+            </div>
+        </article>
+
+    </section>
+
+    <section class="tournament-note">
+        <div>
+            <div class="page-kicker">HOW IT WORKS</div>
+            <h2>READY TO ENTER THE BATTLE?</h2>
+            <p class="muted">Login, choose a tournament, register and track everything from your dashboard.</p>
+        </div>
+        <a class="btn primary-btn" href="auth.html?mode=register">CREATE ACCOUNT →</a>
+    </section>
+</main>
+
+<div class="game-modal" id="gameDetailsModal">
+    <div class="game-modal-box">
+        <button class="game-modal-close" onclick="closeGameDetails()">×</button>
+        <div class="page-kicker" id="detailsGame"></div>
+        <h2 id="detailsTitle"></h2>
+        <p class="muted" id="detailsMode"></p>
+
+        <div class="details-grid">
+            <div><small>PRIZE POOL</small><strong id="detailsPrize"></strong></div>
+            <div><small>ENTRY FEE</small><strong id="detailsEntry"></strong></div>
+            <div><small>TEAMS</small><strong id="detailsTeams"></strong></div>
+            <div><small>DATE</small><strong id="detailsDate"></strong></div>
+        </div>
+
+        <button class="btn primary-btn full" id="detailsRegister">REGISTER NOW →</button>
+    </div>
+</div>
+
+
+<div class="registration-modal" id="registrationModal">
+    <div class="registration-modal-box">
+        <button class="registration-close" onclick="closeRegistrationNotice()">×</button>
+        <div class="registration-icon" id="registrationIcon">🏆</div>
+        <div class="page-kicker" id="registrationTitle">REGISTRATION CONFIRMED</div>
+        <h2 id="registrationText">You're in!</h2>
+        <div class="registration-summary" id="registrationSummary"></div>
+        <div class="registration-modal-actions">
+            <button class="btn outline-btn" onclick="closeRegistrationNotice()">CONTINUE</button>
+            <a class="btn primary-btn" href="dashboard.html">MY DASHBOARD →</a>
+        </div>
+    </div>
+</div>
+
+<footer class="footer-simple">
+    © 2026 Game Arena · Built for competitive gamers.
+</footer>
+
+<script src="app.js"></script>
+<script>
+    function showGameDetails(title, game, prize, entry, teams, date, mode) {
+        document.getElementById("detailsGame").textContent = game.toUpperCase();
+        document.getElementById("detailsTitle").textContent = title;
+        document.getElementById("detailsMode").textContent = mode;
+        document.getElementById("detailsPrize").textContent = prize;
+        document.getElementById("detailsEntry").textContent = entry;
+        document.getElementById("detailsTeams").textContent = teams;
+        document.getElementById("detailsDate").textContent = date;
+
+        document.getElementById("detailsRegister").onclick = () => {
+            registerTournament(title, game, prize, entry, teams, date);
+        };
+
+        document.getElementById("gameDetailsModal").classList.add("show");
+    }
+
+    function closeGameDetails() {
+        document.getElementById("gameDetailsModal").classList.remove("show");
+    }
+
+    document.getElementById("gameDetailsModal").addEventListener("click", (event) => {
+        if (event.target.id === "gameDetailsModal") closeGameDetails();
+    });
+</script>
+
+</body>
+</html>

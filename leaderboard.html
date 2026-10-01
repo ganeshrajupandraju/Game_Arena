@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaderboard | Game Arena</title><link href="styles.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar"><div class="logo"><a class="nav-logo-link" href="index.html">GAME <span>ARENA</span></a></div>
+<div class="nav-links" id="navLinks"><a href="index.html">Home</a><a href="games.html">Games</a><a href="matches.html">Matches</a><a href="teams.html">Teams</a><a class="active" href="leaderboard.html">Leaderboard</a><a href="about.html">About</a></div>
+<div class="nav-buttons"><button class="btn login-btn" onclick="location.href='auth.html?mode=login'">Login</button><button class="btn primary-btn" onclick="location.href='auth.html?mode=register'">Register</button></div><button class="menu-btn" id="menuBtn">☰</button><a class="notification-bell nav-notify" href="notifications.html" aria-label="Notifications">🔔<span id="notificationCount">0</span></a></nav>
+<main class="page-shell">
+<section class="page-hero"><div class="page-kicker">THE BEST OF THE BEST</div><h1 class="page-title">LEADER<span style="color:var(--purple2)">BOARD.</span></h1><p class="page-subtitle">Earn points, win matches and climb the rankings.</p></section>
+<section class="list">
+<div class="leaderboard-toolbar"><div class="leaderboard-filters" id="leaderboardFilters"><button class="leaderboard-filter active" data-game="All">ALL</button><button class="leaderboard-filter" data-game="Free Fire">FREE FIRE</button><button class="leaderboard-filter" data-game="BGMI">BGMI</button><button class="leaderboard-filter" data-game="Valorant">VALORANT</button><button class="leaderboard-filter" data-game="COD Mobile">COD MOBILE</button><button class="leaderboard-filter" data-game="Minecraft">MINECRAFT</button></div><input id="leaderboardSearch" class="leaderboard-search" type="search" placeholder="Search player or team..."></div>
+<div id="podium" class="podium"></div>
+<div class="leaderboard-table-wrap"><table class="leaderboard-table"><thead><tr><th>RANK</th><th>PLAYER / TEAM</th><th>GAME</th><th>WINS</th><th>MATCHES</th><th>POINTS</th><th>WIN RATE</th></tr></thead><tbody id="leaderboardBody"></tbody></table></div>
+<div id="leaderboardEmpty" class="empty" style="display:none;margin:20px 0">No leaderboard entries found.</div>
+</section></main>
+<footer class="footer-simple">&copy; 2026 Game Arena &middot; Built for competitive gamers.</footer>
+<script src="app.js"></script></body></html>

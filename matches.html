@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matches | Game Arena</title>
+<link rel="stylesheet" href="styles.css">
+
+<style>
+.score-line{font-size:1.15rem;font-weight:800;margin:10px 0}
+.score-line.live{animation:pulseScore 1.5s infinite}
+@keyframes pulseScore{50%{transform:scale(1.03)}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<div class="logo"><a class="nav-logo-link" href="index.html">GAME <span>ARENA</span></a></div>
+<div class="nav-links" id="navLinks">
+<a href="index.html">Home</a><a href="games.html">Games</a><a class="active" href="matches.html">Matches</a><a href="teams.html">Teams</a><a href="leaderboard.html">Leaderboard</a><a href="about.html">About</a>
+</div>
+<div class="nav-buttons"><button class="btn login-btn" onclick="location.href='auth.html?mode=login'">Login</button><button class="btn primary-btn" onclick="location.href='auth.html?mode=register'">Register</button></div>
+<button class="menu-btn" id="menuBtn">☰</button>
+<a class="notification-bell nav-notify" href="notifications.html" aria-label="Notifications">🔔<span id="notificationCount">0</span></a></nav>
+<main class="page-shell">
+<section class="page-hero"><div class="page-kicker">LIVE &amp; UPCOMING</div><h1 class="page-title">MATCH<br><span style="color:var(--purple2)">CENTER.</span></h1><p class="page-subtitle">Track live battles, upcoming fixtures and completed match results.</p></section>
+<section class="matches-toolbar"><div class="match-filters"><button class="match-filter active" data-filter="all">ALL</button><button class="match-filter" data-filter="live">🔴 LIVE</button><button class="match-filter" data-filter="upcoming">UPCOMING</button><button class="match-filter" data-filter="completed">COMPLETED</button></div><div class="match-count" id="matchCount">0 MATCHES</div></section>
+<section class="matches-grid" id="matchesList"></section>
+</main>
+<div class="match-details-modal" id="matchDetailsModal">
+<div class="match-details-box">
+<button class="match-details-close" onclick="closeMatchDetails()">×</button>
+<div class="page-kicker" id="detailMatchStatus">MATCH</div><h2 id="detailMatchTitle">Match Details</h2><p id="detailMatchTournament"></p>
+<div class="match-vs"><div><span id="detailTeamA">Team A</span></div><strong>VS</strong><div><span id="detailTeamB">Team B</span></div></div>
+<div class="details-grid"><div><small>GAME</small><strong id="detailMatchGame">—</strong></div><div><small>DATE &amp; TIME</small><strong id="detailMatchDate">—</strong></div><div><small>MAP / MODE</small><strong id="detailMatchMap">—</strong></div><div><small>STATUS</small><strong id="detailMatchResult">—</strong></div></div>
+</div></div>
+<footer class="footer-simple">&copy; 2026 Game Arena · Built for competitive gamers.</footer>
+<script src="app.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    document.querySelectorAll(".match-card, .match-item, [data-match-id]").forEach(card => {
+      const id = card.dataset.matchId;
+      if (!id) return;
+      const m = getMatchById(id);
+      if (!m || m.scoreA === undefined || m.scoreB === undefined) return;
+      const box = document.createElement("div");
+      box.className = "score-line " + (m.status === "LIVE" ? "live" : "");
+      box.textContent = `${m.teamA}  ${m.scoreA} : ${m.scoreB}  ${m.teamB}`;
+      card.prepend(box);
+    });
+  }, 150);
+});
+</script>
+</body>
+</html>

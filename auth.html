@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Login &amp; Register | Game Arena
+  </title>
+  <link href="styles.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <nav class="navbar">
+   <div class="logo">
+    <a class="nav-logo-link" href="index.html">
+     GAME
+     <span>
+      ARENA
+     </span>
+    </a>
+   </div>
+   <div class="nav-links" id="navLinks">
+    <a href="index.html">
+     Home
+    </a>
+    <a href="games.html">
+     Games
+    </a>
+    <a href="matches.html">
+     Matches
+    </a>
+    <a href="teams.html">
+     Teams
+    </a>
+    <a href="leaderboard.html">
+     Leaderboard
+    </a>
+    <a href="about.html">
+     About
+    </a>
+   </div>
+   <div class="nav-buttons">
+    <button class="btn login-btn" onclick="location.href='auth.html?mode=login'">
+     Login
+    </button>
+    <button class="btn primary-btn" onclick="location.href='auth.html?mode=register'">
+     Register
+    </button>
+   </div>
+   <button class="menu-btn" id="menuBtn">
+    ☰
+   </button>
+  </nav>
+  <main class="auth-wrap">
+   <section class="auth-card">
+    <div class="page-kicker">
+     GAME ARENA ACCOUNT
+    </div>
+    <h1 class="page-title" style="font-size:44px">
+     WELCOME
+    </h1>
+    <p class="muted">
+     Login to your account or create a new gamer profile.
+    </p>
+    <div class="auth-tabs">
+     <button class="auth-tab" id="loginTab" onclick="setAuthMode('login')">
+      LOGIN
+     </button>
+     <button class="auth-tab" id="registerTab" onclick="setAuthMode('register')">
+      REGISTER
+     </button>
+    </div>
+    <form id="authForm">
+     <div class="form-group">
+      <label>
+       USERNAME
+      </label>
+      <input id="authName" placeholder="Enter username" required=""/>
+     </div>
+     <div class="form-group">
+      <label>
+       EMAIL
+      </label>
+      <input id="authEmail" placeholder="Enter email" required="" type="email"/>
+     </div>
+     <div class="form-group">
+      <label>
+       PASSWORD
+      </label>
+      <input id="authPassword" placeholder="Enter password" required="" type="password"/>
+     </div>
+     <div class="form-group" id="authGameGroup">
+      <label>
+       FAVOURITE GAME
+      </label>
+      <select id="authGame">
+       <option>
+        Free Fire
+       </option>
+       <option>
+        BGMI
+       </option>
+       <option>
+        Valorant
+       </option>
+       <option>
+        Call of Duty Mobile
+       </option>
+      </select>
+     </div>
+     <button class="btn primary-btn full" id="authSubmit" type="submit">
+      LOGIN &rarr;
+     </button>
+     <div class="auth-message" id="authMessage">
+     </div>
+    </form>
+   </section>
+  </main>
+  <footer class="footer-simple">
+   &copy; 2026 Game Arena &middot; Built for competitive gamers.
+  </footer>
+  <script src="app.js">
+  </script>
+ </body>
+</html>
+

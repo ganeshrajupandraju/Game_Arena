@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   About | Game Arena
+  </title>
+  <link href="styles.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <nav class="navbar">
+   <div class="logo">
+    <a class="nav-logo-link" href="index.html">
+     GAME
+     <span>
+      ARENA
+     </span>
+    </a>
+   </div>
+   <div class="nav-links" id="navLinks">
+    <a href="index.html">
+     Home
+    </a>
+    <a href="games.html">
+     Games
+    </a>
+    <a href="matches.html">
+     Matches
+    </a>
+    <a href="teams.html">
+     Teams
+    </a>
+    <a href="leaderboard.html">
+     Leaderboard
+    </a>
+    <a href="about.html">
+     About
+    </a>
+   </div>
+   <div class="nav-buttons">
+    <button class="btn login-btn" onclick="location.href='auth.html?mode=login'">
+     Login
+    </button>
+    <button class="btn primary-btn" onclick="location.href='auth.html?mode=register'">
+     Register
+    </button>
+   </div>
+   <button class="menu-btn" id="menuBtn">
+    ☰
+   </button>
+  <a class="notification-bell nav-notify" href="notifications.html" aria-label="Notifications">🔔<span id="notificationCount">0</span></a></nav>
+  <main class="page-shell">
+   <section class="page-hero">
+    <div class="page-kicker">
+     ABOUT GAME ARENA
+    </div>
+    <h1 class="page-title">
+     BUILT FOR
+     <br/>
+     <span style="color:var(--purple2)">
+      GAMERS.
+     </span>
+    </h1>
+    <p class="page-subtitle">
+     Game Arena is a front-end gaming tournament portal designed to bring players, teams and competitions into one clean esports experience.
+    </p>
+   </section>
+   <section class="grid-3">
+    <div class="dashboard-card">
+     <h3>
+      🏆 Compete
+     </h3>
+     <p class="muted">
+      Join tournaments across popular competitive games.
+     </p>
+    </div>
+    <div class="dashboard-card">
+     <h3>
+      👥 Connect
+     </h3>
+     <p class="muted">
+      Create teams and find squads to battle with.
+     </p>
+    </div>
+    <div class="dashboard-card">
+     <h3>
+      📈 Climb
+     </h3>
+     <p class="muted">
+      Track registrations, matches and leaderboard performance.
+     </p>
+    </div>
+   </section>
+  </main>
+  <footer class="footer-simple">
+   &copy; 2026 Game Arena &middot; Built for competitive gamers.
+  </footer>
+  <script src="app.js">
+  </script>
+ </body>
+</html>
+

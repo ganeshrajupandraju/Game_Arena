@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Dashboard | Game Arena</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dashboard-page">
+    <nav class="navbar">
+        <div class="logo"><a class="nav-logo-link" href="index.html">GAME <span>ARENA</span></a></div>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home</a><a href="games.html">Games</a><a href="matches.html">Matches</a><a href="bracket.html">Bracket</a><a href="teams.html">Teams</a><a href="leaderboard.html">Leaderboard</a><a href="about.html">About</a>
+        </div>
+        <div class="nav-buttons"><button class="btn login-btn" onclick="logout()">Logout</button></div>
+        <button class="menu-btn" id="menuBtn">☰</button>
+    <a class="notification-bell nav-notify" href="notifications.html" aria-label="Notifications">🔔<span id="notificationCount">0</span></a></nav>
+
+    <main class="page-shell dashboard-shell">
+        <section class="dashboard-welcome">
+            <div>
+                <div class="page-kicker">PLAYER AREA</div>
+                <h1 class="page-title">MY <span style="color:var(--purple2)">DASHBOARD.</span></h1>
+                <p class="page-subtitle" id="dashWelcome">Welcome back. Your Game Arena activity is here.</p>
+            </div>
+            <div class="profile-chip" id="dashProfileChip">👤 PLAYER</div>
+        </section>
+
+        <section class="dashboard-stats-grid">
+            <article class="dashboard-stat-card"><div class="dashboard-stat-icon">🏆</div><div><span>TOURNAMENTS</span><strong id="dashTournamentCount">0</strong><small>Registered battles</small></div></article>
+            <article class="dashboard-stat-card"><div class="dashboard-stat-icon">👥</div><div><span>MY TEAMS</span><strong id="dashTeamCount">0</strong><small>Teams created</small></div></article>
+            <article class="dashboard-stat-card"><div class="dashboard-stat-icon">🎮</div><div><span>MAIN GAME</span><strong id="dashGame">—</strong><small>Your selected game</small></div></article>
+            <article class="dashboard-stat-card"><div class="dashboard-stat-icon">🥇</div><div><span>WINS</span><strong id="dashWins">0</strong><small>Recorded tournament wins</small></div></article>
+        </section>
+
+        <section class="dashboard-main-grid">
+            <article class="dashboard-card dashboard-profile-card">
+                <div class="dashboard-section-heading"><div><div class="section-kicker">YOUR PROFILE</div><h2>Player Information</h2></div><span class="online-badge">● ONLINE</span><a class="btn outline-btn" href="profile.html">EDIT PROFILE</a></div>
+                <div class="profile-details" id="dashProfile"></div>
+            </article>
+
+            <article class="dashboard-card quick-actions-card">
+                <div class="dashboard-section-heading"><div><div class="section-kicker">GET INTO THE ACTION</div><h2>Quick Actions</h2></div></div>
+                <div class="dashboard-actions">
+                    <a class="dashboard-action primary" href="games.html"><span>🎮</span><div><strong>Join Tournament</strong><small>Find your next battle</small></div><b>→</b></a>
+                    <a class="dashboard-action" href="create-team.html"><span>⚔️</span><div><strong>Create Team</strong><small>Build your squad</small></div><b>→</b></a>
+                    <a class="dashboard-action" href="leaderboard.html"><span>🥇</span><div><strong>Leaderboard</strong><small>Check your ranking</small></div><b>→</b></a>
+                    <a class="dashboard-action" href="profile.html"><span>👤</span><div><strong>My Profile</strong><small>Edit your gamer identity</small></div><b>→</b></a>
+                    <button class="dashboard-action logout-action" onclick="logout()"><span>↪</span><div><strong>Logout</strong><small>Leave your account</small></div><b>→</b></button>
+                </div>
+            </article>
+        </section>
+
+        <section class="dashboard-card dashboard-list-card">
+            <div class="dashboard-section-heading"><div><div class="section-kicker">YOUR BATTLES</div><h2>My Tournament Registrations</h2></div><a class="btn outline-btn" href="games.html">VIEW GAMES →</a></div>
+            <div class="dashboard-registration-list" id="dashRegistrations"></div>
+        </section>
+
+        <section class="dashboard-card dashboard-list-card">
+            <div class="dashboard-section-heading"><div><div class="section-kicker">YOUR SQUADS</div><h2>My Teams</h2></div><a class="btn outline-btn" href="create-team.html">CREATE TEAM +</a></div>
+            <div class="dashboard-team-list" id="dashTeams"></div>
+        </section>
+    </main>
+
+    <footer class="footer-simple">© 2026 Game Arena · Built for competitive gamers.</footer>
+    <script src="app.js"></script>
+</body>
+</html>
